@@ -1,46 +1,45 @@
-var lengthOfLongestSubstring = function(s) {
-    
-    if (s.length === 0){
+var lengthOfLongestSubstring = function (s) {
+    if (s.length === 0) {
         return 0
     }
-    
-    let lettersInSubString = new Object()
-    
-    // keep track of a highestLength
-    let highestLength = 1;
-    
-    // keep an index for start of string
-    let currentLength = 0;
-    
-    // build a set as we go, empty the set once we set our highestLength
-    for (let i = 0; i < s.length; i++){
-        
-        // Does our hashtable contain this letter?
-        if (lettersInSubString.hasOwnProperty([s[i]])){
-            
-            // reset currentLength 
-            currentLength = 0;
-            
-            // starting one place ahead of duplicate value
-            i = lettersInSubString[s[i]] + 1
-            
-            // start new empty hashtable
-            lettersInSubString = new Object()
-            
-        }
-        
-        // add char to our hashtable with our current index
-        lettersInSubString[s[i]] = i
-        
-        // increment length 
-        currentLength += 1
-            
-        // check on our highestLength value
-        highestLength =  currentLength > highestLength ? currentLength : highestLength
-    }
-    
-    
-    return highestLength
-};
 
-console.log(lengthOfLongestSubstring("abcabcbb"))
+    let lettersInSubString = new Map()
+
+    // keep track of a highestLength
+    let highestLength = 1
+
+    // keep an index for start of string
+    let currentLength = 0
+
+    // initializing our window boundary
+    let leftBoundary = 0
+
+    // build a map as we go, inserting and updating values
+    for (let i = 0; i < s.length; i++) {
+        // Does our map contain this letter?
+        if (
+            lettersInSubString.has(s[i]) &&
+            lettersInSubString.get(s[i]) >= leftBoundary
+        ) {
+            // Reset current string length to avoid latest duplicate
+            currentLength = i - lettersInSubString.get(s[i]) + 1
+
+            // Reset leftBoundary
+            leftBoundary = i
+        }
+
+        // add or update char to our map with our current index
+        lettersInSubString.set(s[i], i)
+
+        // increment length
+        currentLength += 1
+
+        // check on our highestLength value
+        highestLength =
+            currentLength > highestLength ? currentLength : highestLength
+    }
+
+    return highestLength
+}
+
+console.log(lengthOfLongestSubstring('abba'))
