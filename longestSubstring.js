@@ -16,7 +16,7 @@ var lengthOfLongestSubstring = function(s) {
     for (let i = 0; i < s.length; i++){
         
         // Does our hashtable contain this letter?
-        if (lettersInSubString[s[i]]){
+        if (lettersInSubString.hasOwnProperty([s[i]])){
             
             // reset currentLength 
             currentLength = 0;
