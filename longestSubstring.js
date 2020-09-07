@@ -22,10 +22,10 @@ var lengthOfLongestSubstring = function (s) {
             lettersInSubString.get(s[i]) >= leftBoundary
         ) {
             // Reset current string length to avoid latest duplicate
-            currentLength = i - lettersInSubString.get(s[i]) + 1
+            currentLength = i - (lettersInSubString.get(s[i]) + 1)
 
             // Reset leftBoundary
-            leftBoundary = i
+            leftBoundary = lettersInSubString.get(s[i]) + 1
         }
 
         // add or update char to our map with our current index
@@ -42,4 +42,4 @@ var lengthOfLongestSubstring = function (s) {
     return highestLength
 }
 
-console.log(lengthOfLongestSubstring('abba'))
+console.log(lengthOfLongestSubstring('abcabcbb'))
