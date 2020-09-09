@@ -26,7 +26,7 @@ const findMedianTwoSortedArrays = (nums1, nums2) => {
     let hi = nums1.length
     let combinedLength = nums1.length
 
-    while (low <= hi) {
+    while (lo <= hi) {
         // partitioning X in middle of nums1 array
         let partX = (lo + hi) / 2
         // partitioning Y such that there is an equal number
@@ -34,14 +34,43 @@ const findMedianTwoSortedArrays = (nums1, nums2) => {
         // as there are on combined left sides
         let partY = (combinedLength + 1) / 2 - partX
 
-        let leftX = getMax(nums, partX)
+        let leftX = getMax(nums1, partX)
+        let rightX = getMin(nums1, partX)
+
+        let leftY = getMax(nums2, partX)
+        let rightY = getMin(nums2, partX)
+
+        // If our partitians are set properly
+        if (leftX <= rightY && leftY <= rightX) {
+            if (combinedLength % 2 === 0) {
+                return Math.max(leftX, leftY) + Math.min(rightX, rightY)
+            } else {
+                return Math.max(leftX, leftY)
+            }
+        }
+
+        if (leftX > rightY) {
+            hi = partX - 1
+        } else {
+            lo = partX + 1
+        }
     }
+
+    return -1
 
     function getMax(nums, partition) {
         if (partition === 0) {
             return Number.NEGATIVE_INFINITY
         } else {
             return nums[partition - 1]
+        }
+    }
+
+    function getMin(nums, partition) {
+        if (partition === nums.length) {
+            return Number.POSITIVE_INFINITY
+        } else {
+            return nums[partition]
         }
     }
 }
