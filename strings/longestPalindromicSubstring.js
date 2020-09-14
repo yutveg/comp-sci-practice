@@ -20,4 +20,4 @@ var longestPalindrome = function (s) {
   return max;
 };
 
-console.log(longestPalindrome("calp"));
+console.log(longestPalindrome("caaclp"));
