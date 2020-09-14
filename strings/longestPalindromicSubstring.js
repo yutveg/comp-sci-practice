@@ -1,20 +1,23 @@
-function isPalindrome(s) {
-  let left = 0;
-  let right = s.length - 1;
+var longestPalindrome = function (s) {
+  let max = "";
+  for (let i = 0; i < s.length; i++) {
+    // a loop that will run twice per i iteration
+    for (let j = 1; j < 3; j++) {
+      let left = i;
+      let right = i + j;
 
-  while (left < right) {
-    if (s[left] !== s[right]) {
-      return false;
+      // Do we have a match?
+      while (s[left] && s[left] === s[right]) {
+        left--;
+        right++;
+      }
+
+      if (right - left - 1 > max.length) {
+        max = s.substring(left + 1, right);
+      }
     }
-
-    left += 1;
-    right -= 1;
   }
+  return max;
+};
 
-  return true;
-}
-
-console.log(isPalindrome("aba"));
-console.log(isPalindrome("ba"));
-console.log(isPalindrome("dud"));
-console.log(isPalindrome("cat"));
+console.log(longestPalindrome("calp"));
