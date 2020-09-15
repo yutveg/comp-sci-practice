@@ -1,0 +1,24 @@
+{
+  "name": "comp-sci-practice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "benchmark": "^2.1.4",
+    "lodash": "^4.17.20"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yutveg/comp-sci-practice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yutveg/comp-sci-practice/issues"
+  },
+  "homepage": "https://github.com/yutveg/comp-sci-practice#readme"
+}
