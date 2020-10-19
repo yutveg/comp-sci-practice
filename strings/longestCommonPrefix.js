@@ -16,7 +16,22 @@ var longestCommonPrefix = function (strs) {
   // -- if same continue
   // -- if conflict stop
 
-  while (true) {}
+  for (let letterIndex = 0; letterIndex < strs[0].length; letterIndex++) {
+    // Initialize prefix with first strings letter
+    prefix = prefix.concat(strs[0][letterIndex] || "0");
+
+    // Check other strings against next character
+    for (let stringIndex = 1; stringIndex < strs.length; stringIndex++) {
+      // Did we find a string that does not have this character?
+      if (strs[stringIndex][letterIndex] !== prefix[prefix.length - 1]) {
+        prefix = prefix.slice(0, prefix.length - 1);
+        same = false;
+        break;
+      }
+    }
+  }
 
   return prefix;
 };
+
+console.log(longestCommonPrefix(["flower", "flow", "flight"]));
