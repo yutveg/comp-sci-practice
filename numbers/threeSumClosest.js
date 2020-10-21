@@ -4,13 +4,6 @@ var threeSumClosest = function (nums, target) {
 
   nums.sort((a, b) => a - b);
 
-  // if our sorted arrays first element is target or greater
-  // our closest sum will be first three elements in array
-  if (nums[0] >= target) {
-    bestSum = nums[0] + nums[1] + nums[2];
-    return bestSum;
-  }
-
   for (let i = 0; i < nums.length - 2; i++) {
     // if we are looking at a previously examined number
     // we can skip as we already have its possible combinations
@@ -26,18 +19,9 @@ var threeSumClosest = function (nums, target) {
       if (currentDistance < bestDistance) {
         bestSum = nums[i] + nums[j] + nums[k];
         bestDistance = currentDistance;
-        // shrink boundary until we find new values to combine
-        j++;
-        k--;
-        while (j < k && nums[j] === nums[j - 1]) {
-          j++;
-        }
-        while (k > j && nums[k] === nums[k + 1]) {
-          k--;
-        }
       }
       // if we are larger than target, try to shrink sum
-      else if (nums[i] + nums[j] + nums[k] > target) {
+      if (nums[i] + nums[j] + nums[k] > target) {
         k--;
       }
 
@@ -50,3 +34,5 @@ var threeSumClosest = function (nums, target) {
 
   return bestSum;
 };
+
+console.log(threeSumClosest([-100, -98, -2, -1], -101));
