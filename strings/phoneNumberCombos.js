@@ -16,4 +16,21 @@ var letterCombinations = function (digits) {
     8: "tuv",
     9: "wxyz",
   };
+
+  let solutionArray = [];
+
+  for (digit in digits) {
+    // touch each letter
+    // retrieve all combos from that letter
+    // push into solutions array
+    let currentLetter;
+
+    for (let i = 0; i < lookup[digit].length; i++) {
+      currentLetter = lookup[digit][i];
+    }
+  }
+
+  return solutionArray;
 };
+
+console.log(letterCombinations("23"));

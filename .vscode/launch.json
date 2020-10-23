@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\numbers\\threeSumClosest.js"
+            "program": "${workspaceFolder}\\strings\\phoneNumberCombos.js"
         }
     ]
 }
