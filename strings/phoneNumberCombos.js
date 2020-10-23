@@ -19,7 +19,7 @@ var letterCombinations = function (digits) {
 
   let solutionArray = [];
 
-  for (digit in digits) {
+  for (let digit of digits) {
     // touch each letter
     // retrieve all combos from that letter
     // push into solutions array
@@ -27,6 +27,8 @@ var letterCombinations = function (digits) {
 
     for (let i = 0; i < lookup[digit].length; i++) {
       currentLetter = lookup[digit][i];
+
+      solutionArray.push(currentLetter);
     }
   }
 
