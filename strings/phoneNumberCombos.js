@@ -5,8 +5,10 @@ Return the answer in any order.
 A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
 */
 
-var letterCombinations = function (digits) {
-  let lookup = {
+const letterCombinations = (digits) => {
+  if (digits == null || digits.length === 0) return [];
+
+  const map = {
     2: "abc",
     3: "def",
     4: "ghi",
@@ -17,22 +19,20 @@ var letterCombinations = function (digits) {
     9: "wxyz",
   };
 
-  let solutionArray = [];
-
-  for (let digit of digits) {
-    // touch each letter
-    // retrieve all combos from that letter
-    // push into solutions array
-    let currentLetter;
-
-    for (let i = 0; i < lookup[digit].length; i++) {
-      currentLetter = lookup[digit][i];
-
-      solutionArray.push(currentLetter);
+  const res = [];
+  const go = (i, s) => {
+    if (i === digits.length) {
+      res.push(s);
+      return;
     }
-  }
 
-  return solutionArray;
+    for (const c of map[digits[i]]) {
+      go(i + 1, s + c);
+    }
+  };
+
+  go(0, "");
+  return res;
 };
 
 console.log(letterCombinations("23"));
