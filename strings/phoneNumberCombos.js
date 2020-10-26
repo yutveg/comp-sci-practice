@@ -19,19 +19,26 @@ const letterCombinations = (digits) => {
     9: "wxyz",
   };
 
+  // initializing result array
   const res = [];
+
+  // defining a recursive function
   const go = (i, s) => {
+    // if at end of entry length, push to result array and close function
     if (i === digits.length) {
       res.push(s);
       return;
     }
-
+    // for every character in hashmap value
     for (const c of map[digits[i]]) {
+      // increment index by 1 and concat s with new char c
       go(i + 1, s + c);
     }
   };
 
+  // invoking function
   go(0, "");
+
   return res;
 };
 
